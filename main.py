@@ -71,10 +71,13 @@ def apply_to_job(driver, wait):
                 phone_field.send_keys(os.getenv("Phone"))
                 print("📱 Filled phone")
 
-                location_field = driver.find_element(By.XPATH, "//input[contains(@id,'city')]")
-                location_field.clear()
-                location_field.send_keys(os.getenv("City"))
-                print("📍 Filled city")
+                try:
+                    location_field = driver.find_element(By.XPATH, "//input[contains(@id,'city')]")
+                    location_field.clear()
+                    location_field.send_keys(os.getenv("City"))
+                    print("📍 Filled city")
+                except:
+                    print("⚠️city input not founf.Skipping...")  
 
                 try:
                     submit_btn = driver.find_element(By.XPATH, "//button[contains(@aria-label, 'Submit application')]")
